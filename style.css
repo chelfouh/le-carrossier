@@ -64,7 +64,7 @@ body {
   color: #111827;
 }
 
-/* MOBILE TOPBAR FIX */
+/* MOBILE TOPBAR */
 @media (max-width: 640px) {
   .topbar-inner {
     padding: 0.45rem 0.9rem;
@@ -182,7 +182,7 @@ body {
   border: 1px solid rgba(255,255,255,0.2);
 }
 
-/* SECTIONS */
+/* SECTIONS GÉNÉRALES */
 .section {
   padding: 3rem 1.25rem;
 }
@@ -205,17 +205,33 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.section-header p {
+  color: #4b5563;
+}
+
+/* GRILLE 3 COLONNES */
+.grid-3 {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 /* ABOUT + PORTRAIT */
 .about-grid {
   display: grid;
   gap: 2rem;
-  align-items: center;
 }
 
-/* Portrait à côté du texte même sur téléphone */
-@media (min-width: 360px) {
+/* Sur desktop : texte + portrait côte à côte */
+@media (min-width: 768px) {
   .about-grid {
     grid-template-columns: 1.4fr 1fr;
+    align-items: center;
   }
 }
 
@@ -225,10 +241,14 @@ body {
   line-height: 1.7;
 }
 
+/* Portrait mis en valeur (grand, centré sur mobile) */
 .about-photo img {
   width: 100%;
+  max-width: 420px;
   border-radius: 1rem;
   object-fit: cover;
+  display: block;
+  margin: 0 auto;
   box-shadow: 0 20px 35px rgba(15, 23, 42, 0.25);
 }
 
@@ -252,7 +272,20 @@ body {
   margin-top: 0.25rem;
 }
 
-/* SERVICES WITH IMAGES */
+/* CARTES GÉNÉRALES */
+.card {
+  background: #fff;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
+}
+
+.card h3 {
+  margin-bottom: 0.5rem;
+}
+
+/* SERVICES AVEC IMAGES */
+/* Pas de height fixe -> pas écrasé, on garde le ratio 4/3 */
 .service-card {
   text-align: center;
   padding-bottom: 1.4rem;
@@ -260,13 +293,18 @@ body {
 
 .service-img {
   width: 100%;
-  height: 170px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 0.8rem;
   margin-bottom: 0.8rem;
+  display: block;
 }
 
-/* GALLERY */
+/* GALERIE – MÊME LOGIQUE: PAS DE PHOTO ÉCRASÉE */
+.gallery-grid {
+  margin-top: 1rem;
+}
+
 .gallery-card {
   background: #fff;
   border-radius: 0.75rem;
@@ -276,8 +314,9 @@ body {
 
 .gallery-card img {
   width: 100%;
-  height: 190px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  display: block;
 }
 
 .gallery-card figcaption {
@@ -298,14 +337,23 @@ body {
   }
 }
 
+.contact-list {
+  list-style: none;
+  margin-top: 0.75rem;
+}
+
+.contact-list li {
+  margin-bottom: 0.3rem;
+}
+
 .contact-form {
   background: #fff;
   padding: 1.3rem;
   border-radius: 0.8rem;
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
-  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
 }
 
 .contact-form label {
@@ -333,6 +381,17 @@ body {
   border-color: #3b82f6;
   outline: none;
   box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.25);
+}
+
+/* TEXT UTILS */
+.center {
+  text-align: center;
+}
+
+.small {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: 0.75rem;
 }
 
 /* FOOTER */
