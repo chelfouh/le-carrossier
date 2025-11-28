@@ -6,32 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
-    /* Fond de la page */
     body {
       margin: 0;
       padding: 2rem;
       background: #e5e7eb;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 2rem;
+      min-height: 100vh;
     }
 
-    h1 {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      color: #111827;
-    }
-
-    .note {
-      font-size: 0.8rem;
-      color: #4b5563;
-      max-width: 600px;
-      text-align: center;
-    }
-
-    /* Zone qui contient les deux faces de la carte */
     .cards-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -39,65 +24,62 @@
       justify-content: center;
     }
 
-    /* Dimensions réelles carte de visite : 85,6 × 54 mm */
+    /* FORMAT CARTE DE VISITE */
     .card {
       width: 85.6mm;
       height: 54mm;
       border-radius: 6px;
-      background: #f9fafb;
       box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
-      padding: 10mm;
       box-sizing: border-box;
+      overflow: hidden; /* IMPORTANT : rien ne dépasse */
     }
 
-    /* RECTO */
+    /* RECTO – inspiré de ton modèle */
     .card-front {
+      background: #f9fafb;
+      padding: 7mm 8mm;
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 6mm;
+      grid-template-columns: 1.3fr 1.2fr;
+      column-gap: 6mm;
       align-items: center;
+      height: 100%;
     }
 
-    .brand {
+    .front-left {
       display: flex;
       flex-direction: column;
-      gap: 3mm;
+      justify-content: space-between;
+      height: 100%;
     }
 
     .brand-title {
-      font-size: 3.3mm;
-      letter-spacing: 0.12em;
+      font-size: 3mm;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: #4b5563;
     }
 
-    .brand-name {
-      font-size: 5mm;
-      font-weight: 700;
-      color: #111827;
-    }
-
-    .brand-tagline {
-      font-size: 3mm;
-      color: #6b7280;
-    }
-
-    .brand-contact {
-      margin-top: 3mm;
-      font-size: 3mm;
+    .contact-block {
+      font-size: 2.7mm;
       color: #374151;
-      line-height: 1.4;
+      line-height: 1.5;
+      margin-top: auto;
     }
 
-    .portrait-wrapper {
+    .contact-block span {
+      display: block;
+    }
+
+    .front-right {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3mm;
     }
 
     .portrait {
-      width: 24mm;
-      height: 24mm;
+      width: 22mm;
+      height: 22mm;
       border-radius: 999px;
       overflow: hidden;
       border: 1px solid #e5e7eb;
@@ -110,9 +92,8 @@
     }
 
     .name {
-      font-weight: 600;
-      font-size: 3.6mm;
-      margin-bottom: 1mm;
+      font-weight: 700;
+      font-size: 4.2mm;
       color: #111827;
     }
 
@@ -125,19 +106,21 @@
     .card-back {
       background: #111827;
       color: #f9fafb;
+      padding: 8mm;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       gap: 5mm;
+      height: 100%;
     }
 
     .back-title {
-      font-size: 3.4mm;
-      font-weight: 600;
+      font-size: 3.6mm;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
     }
 
     .back-tagline {
@@ -146,39 +129,29 @@
       color: #e5e7eb;
     }
 
-    .back-services {
-      font-size: 2.8mm;
-      line-height: 1.6;
-      color: #d1d5db;
-    }
-
     .qr-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.5mm;
+      gap: 2mm;
     }
 
     .qr-wrapper img {
-      width: 20mm;
-      height: 20mm;
+      width: 22mm;
+      height: 22mm;
     }
 
     .qr-text {
-      font-size: 2.6mm;
-      letter-spacing: 0.08em;
+      font-size: 2.7mm;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #9ca3af;
+      color: #d1d5db;
     }
 
-    /* Impression : fond blanc, pas de marge navigateurs */
     @media print {
       body {
         background: #ffffff;
         padding: 0;
-      }
-      .note {
-        display: none;
       }
       .cards-wrapper {
         gap: 0;
@@ -187,56 +160,39 @@
         box-shadow: none;
         margin: 0;
       }
-      h1 {
-        display: none;
-      }
     }
   </style>
 </head>
 
 <body>
-  <h1>Carte de visite – Le Carrossier</h1>
-  <p class="note">
-    Pour générer un PDF imprimable : ouvrez cette page, puis utilisez
-    <b>Fichier &gt; Imprimer</b> (ou <b>Ctrl+P / Cmd+P</b>) et enregistrez en PDF.
-    Format recommandé : A4, échelle 100%.
-  </p>
-
   <div class="cards-wrapper">
+
     <!-- RECTO -->
     <div class="card card-front">
-      <div class="brand">
+      <div class="front-left">
         <div class="brand-title">LE CARROSSIER</div>
-        <div class="brand-name">Nouar Benakkaf</div>
-        <div class="brand-tagline">L’Excellence Artisanale au Service de Votre Véhicule</div>
 
-        <div class="brand-contact">
-          +33 6 18 10 44 80<br />
-          19 avenue de Fuveau<br />
-          13013 Marseille
+        <div class="contact-block">
+          <span>+33 6 18 10 44 80</span>
+          <span>19 avenue de Fuveau</span>
+          <span>13013 Marseille</span>
         </div>
       </div>
 
-      <div class="portrait-wrapper">
+      <div class="front-right">
         <div class="portrait">
           <img src="photo-portrait.jpg" alt="Portrait de Nouar Benakkaf" />
         </div>
+        <div class="name">Nouar Benakkaf</div>
+        <div class="experience">+15 ans d’expérience</div>
       </div>
     </div>
 
     <!-- VERSO -->
     <div class="card card-back">
-      <div>
-        <div class="back-title">+15 ans d’expérience</div>
-        <div class="back-tagline">
-          L’Excellence Artisanale au Service de Votre Véhicule.
-        </div>
-      </div>
-
-      <div class="back-services">
-        Réparation carrosserie<br />
-        Peinture automobile<br />
-        Restauration après sinistre
+      <div class="back-title">
+        L’EXCELLENCE ARTISANALE<br />
+        AU SERVICE DE VOTRE VÉHICULE
       </div>
 
       <div class="qr-wrapper">
@@ -244,6 +200,7 @@
         <div class="qr-text">SCANNER POUR LE SITE</div>
       </div>
     </div>
+
   </div>
 </body>
 </html>
