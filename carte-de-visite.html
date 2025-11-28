@@ -9,7 +9,7 @@
     body {
       margin: 0;
       padding: 2rem;
-      background: #e5e7eb;
+      background: #d1d5db;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       display: flex;
       justify-content: center;
@@ -29,17 +29,17 @@
       width: 85.6mm;
       height: 54mm;
       border-radius: 6px;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
       box-sizing: border-box;
-      overflow: hidden; /* IMPORTANT : rien ne dépasse */
+      overflow: hidden; /* rien ne dépasse */
     }
 
-    /* RECTO – inspiré de ton modèle */
+    /* ---------- RECTO ---------- */
     .card-front {
-      background: #f9fafb;
+      background: #f3f4f6;
       padding: 7mm 8mm;
       display: grid;
-      grid-template-columns: 1.3fr 1.2fr;
+      grid-template-columns: 1.1fr 1.3fr;
       column-gap: 6mm;
       align-items: center;
       height: 100%;
@@ -52,37 +52,68 @@
       height: 100%;
     }
 
+    /* Logo clés + nom enseigne */
+    .logo-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2mm;
+    }
+
+    .logo-circle {
+      width: 10mm;
+      height: 10mm;
+      border-radius: 999px;
+      background: #111827;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f9fafb;
+      font-size: 5mm;
+    }
+
     .brand-title {
       font-size: 3mm;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #4b5563;
-    }
-
-    .contact-block {
-      font-size: 2.7mm;
       color: #374151;
-      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    /* Contact gauche avec icônes */
+    .contact-block {
       margin-top: auto;
+      font-size: 2.7mm;
+      color: #111827;
+      display: flex;
+      flex-direction: column;
+      gap: 1mm;
     }
 
-    .contact-block span {
-      display: block;
+    .contact-line {
+      display: flex;
+      align-items: center;
+      gap: 2mm;
     }
 
+    .contact-icon {
+      font-size: 3mm;
+    }
+
+    /* Colonne droite : photo, nom, texte */
     .front-right {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 3mm;
+      align-items: center;
+      text-align: center;
+      gap: 1.5mm;
     }
 
     .portrait {
-      width: 22mm;
-      height: 22mm;
+      width: 24mm;
+      height: 24mm;
       border-radius: 999px;
       overflow: hidden;
-      border: 1px solid #e5e7eb;
+      border: 1px solid #cbd5e1;
     }
 
     .portrait img {
@@ -95,6 +126,7 @@
       font-weight: 700;
       font-size: 4.2mm;
       color: #111827;
+      margin-top: 2mm;
     }
 
     .experience {
@@ -102,7 +134,12 @@
       color: #6b7280;
     }
 
-    /* VERSO */
+    .quality-line {
+      font-size: 2.8mm;
+      color: #4b5563;
+    }
+
+    /* ---------- VERSO ---------- */
     .card-back {
       background: #111827;
       color: #f9fafb;
@@ -112,7 +149,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      gap: 5mm;
+      gap: 6mm;
       height: 100%;
     }
 
@@ -121,12 +158,6 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-    }
-
-    .back-tagline {
-      font-size: 3mm;
-      max-width: 60mm;
-      color: #e5e7eb;
     }
 
     .qr-wrapper {
@@ -170,12 +201,20 @@
     <!-- RECTO -->
     <div class="card card-front">
       <div class="front-left">
-        <div class="brand-title">LE CARROSSIER</div>
+        <div class="logo-block">
+          <div class="logo-circle">🔧</div>
+          <div class="brand-title">LE CARROSSIER</div>
+        </div>
 
         <div class="contact-block">
-          <span>+33 6 18 10 44 80</span>
-          <span>19 avenue de Fuveau</span>
-          <span>13013 Marseille</span>
+          <div class="contact-line">
+            <span class="contact-icon">📞</span>
+            <span>+33 6 18 10 44 80</span>
+          </div>
+          <div class="contact-line">
+            <span class="contact-icon">📍</span>
+            <span>19 avenue de Fuveau, 13013 Marseille</span>
+          </div>
         </div>
       </div>
 
@@ -185,6 +224,7 @@
         </div>
         <div class="name">Nouar Benakkaf</div>
         <div class="experience">+15 ans d’expérience</div>
+        <div class="quality-line">Travail soigné & finitions haut de gamme</div>
       </div>
     </div>
 
